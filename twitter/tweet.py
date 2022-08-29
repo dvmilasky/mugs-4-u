@@ -2,9 +2,13 @@ from tweepy import *
 import logging
 import os
 
-client = Client(bearer_token=os.environ['TWITTER_BEARER'])
+client = Client(bearer_token=os.getenv("TWITTER_BEARER"))
 
-me = client.get_user(username="dmilasky")
+user = client.get_user(username="dmilasky")
 
 
-print(me)
+id = user.data.id
+
+tweets = client.get_users_tweets(id=id)
+
+print(tweets)
